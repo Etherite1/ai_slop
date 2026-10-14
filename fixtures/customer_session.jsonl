@@ -1,0 +1,8 @@
+{"op":"watchlist_create","watchlist_id":"equities","instruments":["AAPL","MSFT"]}
+{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"189.25","event_ms":2000}}
+{"op":"snapshot","watchlist_id":"equities"}
+{"op":"ingest","source":"beta","payload":{"instrument":"AAPL US","price":"190.00","event_seconds":3}}
+{"op":"quote","instrument":"AAPL"}
+{"op":"snapshot","watchlist_id":"equities"}
+{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"188.75","event_ms":1500}}
+{"op":"quote","instrument":"AAPL"}

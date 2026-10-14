@@ -1,0 +1,5 @@
+{"op":"watchlist_create","watchlist_id":"tech","instruments":["AAPL","MSFT US"]}
+{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL US","last":"189.25","event_ms":1000}}
+{"op":"ingest","source":"beta","payload":{"instrument":"MSFT","price":"415.10","event_seconds":2}}
+{"op":"snapshot","watchlist_id":"tech"}
+{"op":"quote","instrument":"APPLE"}

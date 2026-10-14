@@ -1,0 +1,5 @@
+[
+  {"instrument_id":"EQ:AAPL","symbol":"AAPL","aliases":["AAPL US","APPLE"]},
+  {"instrument_id":"EQ:MSFT","symbol":"MSFT","aliases":["MSFT US"]},
+  {"instrument_id":"EQ:IBM","symbol":"IBM","aliases":["IBM US"]}
+]
