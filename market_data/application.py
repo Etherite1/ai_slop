@@ -37,9 +37,7 @@ class MarketDataApplication:
         event = self.feeds.decode(source, payload)
         changed = self.quotes.apply(event)
         if changed:
-            self.cache.invalidate_instrument(
-                payload.get("ticker", payload.get("instrument"))
-            )
+            self.cache.invalidate_instrument(event.instrument_id)
         return {"accepted": changed}
 
     def quote(self, reference: str) -> dict[str, Any]:

@@ -40,6 +40,13 @@ class QuoteTests(unittest.TestCase):
         self.assertTrue(self.app.ingest("alpha", event)["accepted"])
         self.assertFalse(self.app.ingest("alpha", event)["accepted"])
 
+    def test_older_event_is_ignored(self):
+        self.app.ingest("alpha", {"ticker": "AAPL", "last": "10", "event_ms": 2000})
+        before = self.app.quote("AAPL")
+        result = self.app.ingest("alpha", {"ticker": "APPLE", "last": "9", "event_ms": 1000})
+        self.assertEqual(result, {"accepted": False})
+        self.assertEqual(self.app.quote("AAPL"), before)
+
 
 if __name__ == "__main__":
     unittest.main()

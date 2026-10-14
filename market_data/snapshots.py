@@ -1,7 +1,7 @@
+from copy import deepcopy
 from typing import Any
 
 from .catalog import InstrumentCatalog
-from .clock import SystemClock
 from .quote_store import QuoteStore
 from .snapshot_cache import SnapshotCache
 from .watchlists import Watchlist
@@ -17,7 +17,7 @@ class SnapshotBuilder:
     def build(self, watchlist: Watchlist) -> dict[str, Any]:
         cached = self._cache.get(watchlist.watchlist_id)
         if cached is not None and cached["revision"] == watchlist.revision:
-            return dict(cached)
+            return deepcopy(cached)
         rows: list[dict[str, Any]] = []
         for instrument_id in watchlist.instrument_ids:
             instrument = self._catalog.get(instrument_id)
@@ -30,4 +30,4 @@ class SnapshotBuilder:
         result = {"watchlist_id": watchlist.watchlist_id,
                   "revision": watchlist.revision, "quotes": rows}
         self._cache.put(watchlist.watchlist_id, result, watchlist.instrument_ids)
-        return result
+        return deepcopy(result)

@@ -24,12 +24,9 @@ class WatchlistStore:
         if not isinstance(references, list):
             raise ValueError("instruments must be a list")
         ids: list[str] = []
-        seen: set[str] = set()
         for reference in references:
             instrument_id = self._catalog.resolve(reference).instrument_id
-            if instrument_id not in seen:
-                ids.append(instrument_id)
-                seen.add(instrument_id)
+            ids.append(instrument_id)
         if len(ids) > self._max_instruments:
             raise ValueError("watchlist instrument capacity exceeded")
         return key, tuple(ids)

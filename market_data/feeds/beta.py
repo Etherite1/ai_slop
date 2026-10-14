@@ -14,5 +14,5 @@ class BetaAdapter:
             raise ValueError("beta payload must be an object")
         instrument = self._catalog.resolve(payload.get("instrument"))
         price = decimal_price(payload.get("price"))
-        timestamp = integer(payload.get("event_seconds"), "event_seconds") * 1000
+        timestamp = integer(payload.get("event_seconds"), "event_seconds")
         return QuoteEvent(instrument.instrument_id, price, timestamp, "beta")

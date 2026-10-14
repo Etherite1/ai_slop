@@ -1,8 +1,10 @@
-{"op":"watchlist_create","watchlist_id":"equities","instruments":["AAPL","MSFT"]}
-{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"189.25","event_ms":2000}}
-{"op":"snapshot","watchlist_id":"equities"}
-{"op":"ingest","source":"beta","payload":{"instrument":"AAPL US","price":"190.00","event_seconds":3}}
+{"op":"ingest","source":"beta","payload":{"instrument":"MSFT","price":"11","event_seconds":3}}
+{"op":"quote","instrument":"MSFT"}
+{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"10","event_ms":2000}}
+{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"9","event_ms":1000}}
 {"op":"quote","instrument":"AAPL"}
-{"op":"snapshot","watchlist_id":"equities"}
-{"op":"ingest","source":"alpha","payload":{"ticker":"AAPL","last":"188.75","event_ms":1500}}
-{"op":"quote","instrument":"AAPL"}
+{"op":"watchlist_create","watchlist_id":"tech","instruments":["AAPL","APPLE","MSFT"]}
+{"op":"clock_set","now_ms":2500}
+{"op":"quote","instrument":"AAPL","include_freshness":true}
+{"op":"clock_set","now_ms":2501}
+{"op":"quote","instrument":"AAPL","include_freshness":true}

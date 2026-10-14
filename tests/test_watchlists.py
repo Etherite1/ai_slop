@@ -14,6 +14,7 @@ class WatchlistTests(unittest.TestCase):
         self.app = MarketDataApplication(ROWS, SETTINGS, ManualClock(1000))
 
     def test_create_deduplicates_canonical_ids_in_order(self):
+        self.app = MarketDataApplication(ROWS, {**SETTINGS, "max_instruments_per_watchlist": 3})
         result = self.app.watchlist_create("w", ["APPLE", "MSFT", "AAPL"])
         self.assertEqual(result["instrument_ids"], ["EQ:AAPL", "EQ:MSFT"])
         self.assertEqual(result["revision"], 1)

@@ -35,6 +35,18 @@ class SnapshotTests(unittest.TestCase):
         self.app.watchlist_replace("w", ["MSFT"])
         self.assertEqual([q["symbol"] for q in self.app.snapshot("w")["quotes"]], ["MSFT"])
 
+    def test_symbol_update_invalidates_snapshot(self):
+        self.app.snapshot("w")
+        self.app.ingest("alpha", {"ticker": "AAPL", "last": "12.5", "event_ms": 900})
+        self.assertEqual(self.app.snapshot("w")["quotes"][0]["price"], "12.5")
+
+    def test_snapshot_responses_are_detached_on_miss_and_hit(self):
+        for _ in range(2):
+            result = self.app.snapshot("w")
+            result["quotes"][0]["symbol"] = "changed"
+            result["quotes"].clear()
+            self.assertEqual([q["symbol"] for q in self.app.snapshot("w")["quotes"]], ["AAPL", "MSFT"])
+
     def test_cache_is_bounded_and_reports_hits(self):
         self.app.snapshot("w")
         self.app.snapshot("w")
